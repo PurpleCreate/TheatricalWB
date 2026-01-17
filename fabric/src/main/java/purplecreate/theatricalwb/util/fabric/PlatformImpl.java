@@ -1,8 +1,10 @@
 package purplecreate.theatricalwb.util.fabric;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -13,6 +15,8 @@ import org.jetbrains.annotations.Nullable;
 import purplecreate.theatricalwb.util.Platform;
 
 public class PlatformImpl {
+  public static MinecraftServer currentServer;
+
   public static Platform get() {
     return Platform.FABRIC;
   }
@@ -33,5 +37,16 @@ public class PlatformImpl {
         return constructor.createMenu(i, inventory, player);
       }
     };
+  }
+
+  public static Platform.Side getSide() {
+    return switch (FabricLoader.getInstance().getEnvironmentType()) {
+      case CLIENT -> Platform.Side.CLIENT;
+      case SERVER -> Platform.Side.SERVER;
+    };
+  }
+
+  public static MinecraftServer getServer() {
+    return currentServer;
   }
 }

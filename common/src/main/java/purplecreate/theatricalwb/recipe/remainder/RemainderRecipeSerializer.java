@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
 
-import static purplecreate.theatricalwb.util.RecipeHelper.getResult;
+import static purplecreate.theatricalwb.util.RecipeHelper.unsafeGetResult;
 
 public class RemainderRecipeSerializer implements RecipeSerializer<RemainderRecipe> {
   @Override
@@ -26,7 +26,7 @@ public class RemainderRecipeSerializer implements RecipeSerializer<RemainderReci
       shapelessRecipe.getId(),
       shapelessRecipe.getGroup(),
       shapelessRecipe.category(),
-      getResult(shapelessRecipe),
+      unsafeGetResult(shapelessRecipe),
       remainders,
       shapelessRecipe.getIngredients()
     );
@@ -56,7 +56,7 @@ public class RemainderRecipeSerializer implements RecipeSerializer<RemainderReci
       shapelessRecipe.getId(),
       shapelessRecipe.getGroup(),
       shapelessRecipe.category(),
-      getResult(shapelessRecipe),
+      unsafeGetResult(shapelessRecipe),
       remainders,
       shapelessRecipe.getIngredients()
     );
